@@ -2,16 +2,15 @@
   "name": "tikke-assessment",
   "version": "0.1.0",
   "bin": {
-    "tikke-assessment": "bin/tikke-assessment.js"
+    "tikke-assessment": "bin/stack.js"
   },
   "scripts": {
     "prepare": "npx husky install",
     "postinstall": "npx husky install",
-    "build": "tsc",
-    "watch": "tsc -w",
     "test": "jest --runInBand --coverage",
     "lint": "npx eslint --ext .ts .",
-    "cdk": "cdk"
+    "diff": "npx cdk diff person-infra-app --debug",
+    "deploy": "npx cdk deploy person-infra-app  --require-approval never"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
@@ -26,6 +25,7 @@
     "eslint": "^8.23.1",
     "husky": "^8.0.1",
     "jest": "^27.5.1",
+    "jest-junit": "^14.0.1",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.1.0",
