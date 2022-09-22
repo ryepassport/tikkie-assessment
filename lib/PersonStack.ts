@@ -1,4 +1,5 @@
-import { PersonTable } from '@constructs/table';
+import { APIGateway } from '@constructs/api-gateway'
+import { PersonTable } from '@constructs/table'
 import { Stack, StackProps } from 'aws-cdk-lib'
 import { Construct } from 'constructs';
 
@@ -30,6 +31,10 @@ export class PersonStack extends Stack {
   
     new PersonTable(this, 'PersonTable', {
       tableName: props.tableName
+    })
+
+    new APIGateway(this, 'PersonAPIGateway', {
+      stage: props.apiStageName
     })
   }
 }
