@@ -5,19 +5,29 @@
     "tikke-assessment": "bin/tikke-assessment.js"
   },
   "scripts": {
+    "postinstall": "npx husky install",
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "jest",
+    "test": "jest --runInBand --coverage",
+    "lint": "npx eslint --ext .ts .",
     "cdk": "cdk"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@types/aws-lambda": "^8.10.104",
     "@types/jest": "^27.5.2",
     "@types/node": "10.17.27",
     "@types/prettier": "2.6.0",
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "@typescript-eslint/parser": "^5.38.0",
+    "aws-cdk": "2.43.0",
+    "eslint": "^8.23.1",
+    "husky": "^8.0.1",
     "jest": "^27.5.1",
     "ts-jest": "^27.1.4",
-    "aws-cdk": "2.43.0",
     "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.0",
     "typescript": "~3.9.7"
   },
   "dependencies": {
