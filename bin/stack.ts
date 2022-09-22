@@ -13,5 +13,6 @@ new PersonStack(app, 'person-infra-app', {
     account: config.account,
     region: config.region
   },
-  apiStageName: 'dev'
+  apiStageName: 'dev',
+  tableName: 'persons'
 })
