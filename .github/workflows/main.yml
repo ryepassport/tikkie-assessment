@@ -1,0 +1,21 @@
+name: Rye Pasaporte Tikke Assessment
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Build and Test
+        run: |
+          npm ci
+          npm run lint
+          npm run test
