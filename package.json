@@ -5,6 +5,7 @@
     "tikke-assessment": "bin/tikke-assessment.js"
   },
   "scripts": {
+    "prepare": "npx husky install",
     "postinstall": "npx husky install",
     "build": "tsc",
     "watch": "tsc -w",
