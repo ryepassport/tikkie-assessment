@@ -1,4 +1,4 @@
-import { APIGateway } from '@constructs/api-gateway'
+import { APIGateway } from '@constructs/apiGateway'
 import { DeletePersonLambda } from '@constructs/lambdas/deletePerson';
 import { SavePersonLambda } from '@constructs/lambdas/savePerson';
 import { PersonTable } from '@constructs/table'
