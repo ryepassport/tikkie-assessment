@@ -4,7 +4,7 @@ import { APIGatewayProxyResult } from 'aws-lambda'
 /**
  * Type for response body
  */
-export type ResponseBody = Person | string
+export type ResponseBody = Person | Person[] | string
 
 /**
  * Type for headers
