@@ -1,3 +1,5 @@
+import { AWS_SETTINGS } from '@constants/aws'
+
 /**
  * AWS Specific config type
  */
@@ -16,6 +18,6 @@ interface AWSAccount {
  * Main config file for aws account settings
  */
 export const config: AWSAccount = {
-  account: '778018686861',
-  region: 'ap-southeast-1'
+  account: AWS_SETTINGS.account,
+  region: AWS_SETTINGS.region
 }
