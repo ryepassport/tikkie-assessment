@@ -5,6 +5,7 @@ import { Person } from '@models/person'
 import { getISODate } from '@helpers/date'
 import * as ddb from '@helpers/aws/ddb'
 import { TABLE } from '@constants/aws'
+import { MaybeUndefined } from '@models/common'
 
 /**
  * Save person data to ddb
@@ -100,4 +101,60 @@ export const updatePerson = async (data: Person): Promise<Person> => {
       }))
     }
   })
+}
+
+/**
+ * Returns all persons from the data store
+ * @returns
+ * Collection of persons
+ */
+export const getPersons = async (): Promise<MaybeUndefined<Person[]>> => {
+  const { Items } = await ddb.query({
+    TableName: TABLE.name,
+    IndexName: 'reverse',
+    KeyConditionExpression: '#sk = :sk and begins_with(#pk, :pk)',
+    ExpressionAttributeNames: {
+      '#pk': 'pk',
+      '#sk': 'sk'
+    },
+    ExpressionAttributeValues: {
+      ':pk': `${TABLE.pkPrefix}`,
+      ':sk': `${TABLE.skPrefix}`
+    }
+  })
+
+  if (!Items || Items.length === 0) {
+    return []
+  }
+
+  return Items.map(item => {
+    return {
+      ...item.data
+    }
+  })
+}
+
+/**
+ * Returns an individual person data based on passed id
+ * @param id
+ * Unique ID of a person record
+ * @returns
+ * Person data, see interface definition
+ */
+export const getPerson = async (id: string): Promise<MaybeUndefined<Person>> => {
+  const { Item: item } = await ddb.get({
+    TableName: TABLE.name,
+    Key: {
+      pk: `${TABLE.pkPrefix}${id}`,
+      sk: `${TABLE.skPrefix}`
+    }
+  })
+
+  if (!item) {
+    return
+  }
+
+  return {
+    ...item.data
+  }
 }

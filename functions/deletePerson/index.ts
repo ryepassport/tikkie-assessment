@@ -6,6 +6,6 @@ import { RequestTypeSchema, REQUEST_METHOD } from '@helpers/request'
  */
 export const deletePerson: RequestTypeSchema = {
   entry: join(__dirname, 'handler.ts'),
-  path: '/books/{id}',
+  path: '/person/{id}',
   method: REQUEST_METHOD.DELETE
 }
