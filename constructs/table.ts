@@ -29,5 +29,17 @@ export class PersonTable extends Table {
       encryption: TableEncryption.AWS_MANAGED,
       billingMode: BillingMode.PAY_PER_REQUEST,
     })
+  
+    this.addGlobalSecondaryIndex({
+      indexName: 'reverse',
+      partitionKey: {
+        name: 'sk',
+        type: AttributeType.STRING
+      },
+      sortKey: {
+        name: 'pk',
+        type: AttributeType.STRING
+      }
+    })
   }
 }
