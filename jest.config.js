@@ -3,7 +3,8 @@ module.exports = {
   moduleNameMapper: {
     '@lib/(.*)$': '<rootDir>/lib/$1',
     '@test/(.*)$': '<rootDir>/test/$1',
-    '@bin/(.*)$': '<rootDir>/bin/$1'
+    '@bin/(.*)$': '<rootDir>/bin/$1',
+    '@helpers/(.*)$': '<rootDir>/helpers/$1'
   },
   testPathIgnorePatterns: ['/node_modules/'],
   testMatch: ['**/*.spec.ts'],
