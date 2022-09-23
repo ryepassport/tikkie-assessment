@@ -65,3 +65,39 @@ export const updatePerson = async (data: Person): Promise<Person> => {
 
   return data
 }
+
+/**
+ * Removes a person from record
+ * @param id 
+ * Unique id number for the person
+ * @returns 
+ */
+ export const removePerson = async (id: string): Promise<void> => {
+  const { Items: items } = await ddb.query({
+    TableName: TABLE.name,
+    KeyConditionExpression: '#pk = :pk',
+    ExpressionAttributeNames: {
+      '#pk': 'pk'
+    },
+    ExpressionAttributeValues: {
+      ':pk': `${TABLE.pkPrefix}${id}`
+    }
+  })
+
+  if (!items || items.length === 0) {
+    throw new Error('The record you are trying to delete is not available.')
+  }
+
+  await ddb.batchWrite({
+    RequestItems: {
+      [TABLE.name]: items.map(v => ({
+        DeleteRequest: {
+          Key: {
+            pk: v.pk,
+            sk: v.sk
+          }
+        }
+      }))
+    }
+  })
+}
