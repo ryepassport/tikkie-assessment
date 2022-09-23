@@ -17,6 +17,7 @@
     "@commitlint/config-conventional": "^17.1.0",
     "@types/aws-lambda": "^8.10.104",
     "@types/jest": "^27.5.2",
+    "@types/joi": "^17.2.3",
     "@types/node": "10.17.27",
     "@types/prettier": "2.6.0",
     "@typescript-eslint/eslint-plugin": "^5.38.0",
@@ -37,6 +38,7 @@
     "aws-cdk-lib": "2.43.0",
     "constructs": "^10.0.0",
     "esbuild": "^0.15.9",
+    "joi": "^17.6.1",
     "source-map-support": "^0.5.21"
   }
 }
