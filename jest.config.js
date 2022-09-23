@@ -8,6 +8,7 @@ module.exports = {
     '@functions/(.*)$': '<rootDir>/functions/$1',
     '@constructs/(.*)$': '<rootDir>/constructs/$1',
     '@models/(.*)$': '<rootDir>/models/$1',
+    '@constants/(.*)$': '<rootDir>/constants/$1',
   },
   testPathIgnorePatterns: ['/node_modules/'],
   testMatch: ['**/*.spec.ts'],
