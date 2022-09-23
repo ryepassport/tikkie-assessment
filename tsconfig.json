@@ -21,10 +21,11 @@
       "@constructs/*": ["constructs/*"],
       "@lib/*": ["lib/*"],
       "@bin/*": ["bin/*"],
-      "@helpers/*": ["helpers/*"]
+      "@helpers/*": ["helpers/*"],
+      "@functions/*": ["functions/*"]
     }
   },
-  "include": ["bin", "lib", "constructs", "helpers"],
+  "include": ["bin", "lib", "constructs", "helpers", "functions"],
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   }

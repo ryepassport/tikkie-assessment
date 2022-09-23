@@ -1,4 +1,5 @@
 import { APIGateway } from '@constructs/api-gateway'
+import { SavePersonLambda } from '@constructs/lambdas/savePerson';
 import { PersonTable } from '@constructs/table'
 import { Stack, StackProps } from 'aws-cdk-lib'
 import { Construct } from 'constructs';
@@ -29,12 +30,14 @@ export class PersonStack extends Stack {
   constructor(scope: Construct, id: string, props: PersonStackProps) {
     super(scope, id, props)
   
-    new PersonTable(this, 'PersonTable', {
+    const table = new PersonTable(this, 'PersonTable', {
       tableName: props.tableName
     })
 
-    new APIGateway(this, 'PersonAPIGateway', {
+    const apiGateway = new APIGateway(this, 'PersonAPIGateway', {
       stage: props.apiStageName
     })
+
+    new SavePersonLambda(this, 'SavePersonLambda', { table, apiGateway, requestType: 'SAVE' })
   }
 }
