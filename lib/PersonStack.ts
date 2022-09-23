@@ -1,5 +1,6 @@
 import { APIGateway } from '@constructs/apiGateway'
 import { DeletePersonLambda } from '@constructs/lambdas/deletePerson';
+import { GetPersonLambda } from '@constructs/lambdas/getPerson';
 import { SavePersonLambda } from '@constructs/lambdas/savePerson';
 import { PersonTable } from '@constructs/table'
 import { Stack, StackProps } from 'aws-cdk-lib'
@@ -42,5 +43,7 @@ export class PersonStack extends Stack {
     new SavePersonLambda(this, 'SavePersonLambda', { table, apiGateway, requestType: 'SAVE' })
     new SavePersonLambda(this, 'UpdatePersonLambda', { table, apiGateway, requestType: 'UPDATE' })
     new DeletePersonLambda(this, 'DeletePersonLambda', { table, apiGateway })
+    new GetPersonLambda(this, 'GetPersonLambda', { table, apiGateway, requestType: 'GET' })
+    new GetPersonLambda(this, 'ListPersonLambda', { table, apiGateway, requestType: 'LIST' })
   }
 }
