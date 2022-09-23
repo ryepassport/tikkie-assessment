@@ -19,13 +19,14 @@
     "baseUrl": ".",
     "paths": {
       "@constructs/*": ["constructs/*"],
+      "@helpers/*": ["helpers/*"],
       "@lib/*": ["lib/*"],
       "@bin/*": ["bin/*"],
-      "@helpers/*": ["helpers/*"],
-      "@functions/*": ["functions/*"]
+      "@functions/*": ["functions/*"],
+      "@models/*": ["models/*"]
     }
   },
-  "include": ["bin", "lib", "constructs", "helpers", "functions"],
+  "include": ["bin", "lib", "constructs", "helpers", "functions", "models", "test"],
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   }
