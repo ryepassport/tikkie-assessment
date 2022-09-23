@@ -39,5 +39,6 @@ export class PersonStack extends Stack {
     })
 
     new SavePersonLambda(this, 'SavePersonLambda', { table, apiGateway, requestType: 'SAVE' })
+    new SavePersonLambda(this, 'UpdatePersonLambda', { table, apiGateway, requestType: 'UPDATE' })
   }
 }
