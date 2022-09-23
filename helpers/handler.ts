@@ -1,9 +1,10 @@
+import { Person } from '@models/person'
 import { APIGatewayProxyResult } from 'aws-lambda'
 
 /**
  * Type for response body
  */
-export type ResponseBody = string
+export type ResponseBody = Person | string
 
 /**
  * Type for headers
