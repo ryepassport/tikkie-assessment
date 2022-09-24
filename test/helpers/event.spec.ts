@@ -17,17 +17,15 @@ describe('helpers/event', () => {
   })
 
   it('should post a new message in the sqs queue', async () => {
-    const mockSQSSendMessage = jest.fn()
-
-    mockSQSSendMessage.mockImplementationOnce(() => {
-      return {
-        MD5OfMessageBody: "banana",
-        MD5OfMessageAttributes: "banana",
-        MessageId: "banana"
-      }
-    })
-
-    const sendMessageMock = jest.spyOn(sqsHelper, 'sendMessage').mockImplementationOnce(mockSQSSendMessage)
+    const sendMessageMock = jest.spyOn(sqsHelper, 'sendMessage').mockImplementationOnce(
+      jest.fn().mockImplementationOnce(() => {
+        return {
+          MD5OfMessageBody: "banana",
+          MD5OfMessageAttributes: "banana",
+          MessageId: "banana"
+        }
+      })
+    )
     
     const message: MessageDetails<BananaMessage> = {
       type: MessageEventType.CREATED,
