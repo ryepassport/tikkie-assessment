@@ -1,7 +1,9 @@
+import { QUEUE } from '@constants/aws';
 import { APIGateway } from '@constructs/apiGateway'
 import { DeletePersonLambda } from '@constructs/lambdas/deletePerson';
 import { GetPersonLambda } from '@constructs/lambdas/getPerson';
 import { SavePersonLambda } from '@constructs/lambdas/savePerson';
+import { PersonEventQueue } from '@constructs/sqs';
 import { PersonTable } from '@constructs/table'
 import { Stack, StackProps } from 'aws-cdk-lib'
 import { Construct } from 'constructs';
@@ -18,6 +20,10 @@ export interface UniquePersonStackProps {
    * Name of table used for Person stack
    */
   tableName: string
+  /**
+   * Name of queue for each lambda events occurred
+   */
+  queueName: string
 }
 
 /**
@@ -40,9 +46,38 @@ export class PersonStack extends Stack {
       stage: props.apiStageName
     })
 
-    new SavePersonLambda(this, 'SavePersonLambda', { table, apiGateway, requestType: 'SAVE' })
-    new SavePersonLambda(this, 'UpdatePersonLambda', { table, apiGateway, requestType: 'UPDATE' })
-    new DeletePersonLambda(this, 'DeletePersonLambda', { table, apiGateway })
+    const personEventQueue = new PersonEventQueue(this, 'PersonEventQueue', {
+      queueName: QUEUE.name
+    })
+
+    new SavePersonLambda(this, 'SavePersonLambda', {
+      table,
+      apiGateway,
+      requestType: 'SAVE',
+      queue: {
+        url: personEventQueue.queueUrl,
+        arn: personEventQueue.queueArn
+      }
+    })
+
+    new SavePersonLambda(this, 'UpdatePersonLambda', {
+      table,
+      apiGateway,
+      requestType: 'UPDATE',
+      queue: {
+        url: personEventQueue.queueUrl,
+        arn: personEventQueue.queueArn
+      }
+    })
+    
+    new DeletePersonLambda(this, 'DeletePersonLambda', {
+      table,
+      apiGateway,
+      queue: {
+        url: personEventQueue.queueUrl,
+        arn: personEventQueue.queueArn
+      }
+    })
     new GetPersonLambda(this, 'GetPersonLambda', { table, apiGateway, requestType: 'GET' })
     new GetPersonLambda(this, 'ListPersonLambda', { table, apiGateway, requestType: 'LIST' })
   }
