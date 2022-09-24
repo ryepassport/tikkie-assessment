@@ -26,6 +26,8 @@ module.exports = {
   },
   collectCoverageFrom: [
     'lib/**/*.ts',
+    'helpers/**/*.ts',
+    'functions/**/*.ts'
   ],
   verbose: true,
   reporters: ['default', ['jest-junit', { outputDirectory: 'coverage/test-reports' }]]
