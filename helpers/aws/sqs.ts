@@ -1,4 +1,4 @@
-// istanbul ignore
+// istanbul ignore file
 
 import SQS from 'aws-sdk/clients/sqs'
 import { config } from '@bin/config'
@@ -10,6 +10,6 @@ const client = new SQS({
 
 captureAWSClient(client)
 
-export const sendMessage = async (params: SQS.SendMessageRequest): Promise<SQS.SendMessageResult> => {
+export const sendMessage = async (params: SQS.SendMessageRequest) => {
   return client.sendMessage(params).promise()
 }
