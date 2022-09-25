@@ -29,7 +29,7 @@ export const save = async (requestData: PersonRequestParams): Promise<Person> =>
   let res: Person
   
   if (id) {
-    res = await updatePerson(data)
+    res = await updatePerson({...data, id})
   } else {
     res = await savePerson(data)
   }
