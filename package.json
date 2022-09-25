@@ -23,6 +23,7 @@
     "diff:prod": "export STACK=person-prod && npm run diff"
   },
   "devDependencies": {
+    "@aws-cdk/assert": "^2.43.1",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@types/aws-lambda": "^8.10.104",
