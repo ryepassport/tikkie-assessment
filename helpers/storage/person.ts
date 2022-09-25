@@ -44,7 +44,7 @@ export const savePerson = async (data: Person): Promise<Person> => {
  * Person data, see interface definition
  */
 export const updatePerson = async (data: Person): Promise<Person> => {
-  const pk = `${TABLE.name}${data.id}`
+  const pk = `${TABLE.pkPrefix}${data.id}`
   const sk = 'DATA'
 
   data.updatedAt = getISODate()
