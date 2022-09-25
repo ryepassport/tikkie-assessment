@@ -1,11 +1,11 @@
 // istanbul ignore file
 
 import SQS from 'aws-sdk/clients/sqs'
-import { config } from '@bin/config'
+import { DEFAULT_REGION } from '@bin/util'
 import { captureAWSClient } from 'aws-xray-sdk'
 
 const client = new SQS({
-  region: config.region
+  region: DEFAULT_REGION
 })
 
 captureAWSClient(client)

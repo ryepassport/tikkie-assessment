@@ -1,7 +1,7 @@
 // istanbul ignore file
 
+import { DEFAULT_REGION } from '@bin/util'
 import DDB from 'aws-sdk/clients/dynamodb'
-import { config } from '@bin/config'
 import { captureAWSClient } from 'aws-xray-sdk'
 
 /**
@@ -14,7 +14,7 @@ interface XrayClientFix extends DDB.DocumentClient {
 }
 
 const client: XrayClientFix = new DDB.DocumentClient({
-  region: config.region,
+  region: DEFAULT_REGION,
   service: new DDB(),
   convertEmptyValues: true
 }) as XrayClientFix

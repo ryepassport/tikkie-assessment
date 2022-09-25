@@ -4,8 +4,8 @@ import { v4 as uuidv4 } from 'uuid'
 import { Person } from '@models/person'
 import { getISODate } from '@helpers/date'
 import * as ddb from '@helpers/aws/ddb'
-import { TABLE } from '@constants/aws'
 import { MaybeUndefined } from '@models/common'
+import { TABLE } from '@bin/util'
 
 /**
  * Save person data to ddb
@@ -23,7 +23,7 @@ export const savePerson = async (data: Person): Promise<Person> => {
   data.updatedAt = createdAt
 
   await ddb.put({
-    TableName: TABLE.name,
+    TableName: process.env.TABLE_NAME as string,
     Item: {
       pk: `${TABLE.pkPrefix}${personId}`,
       sk: `${TABLE.skPrefix}`,
@@ -50,7 +50,7 @@ export const updatePerson = async (data: Person): Promise<Person> => {
   data.updatedAt = getISODate()
 
   await ddb.update({
-    TableName: TABLE.name,
+    TableName: process.env.TABLE_NAME as string,
     Key: {
       pk,
       sk
@@ -75,7 +75,7 @@ export const updatePerson = async (data: Person): Promise<Person> => {
  */
  export const removePerson = async (id: string): Promise<void> => {
   const { Items: items } = await ddb.query({
-    TableName: TABLE.name,
+    TableName: process.env.TABLE_NAME as string,
     KeyConditionExpression: '#pk = :pk',
     ExpressionAttributeNames: {
       '#pk': 'pk'
@@ -91,7 +91,7 @@ export const updatePerson = async (data: Person): Promise<Person> => {
 
   await ddb.batchWrite({
     RequestItems: {
-      [TABLE.name]: items.map(v => ({
+      [process.env.TABLE_NAME as string]: items.map(v => ({
         DeleteRequest: {
           Key: {
             pk: v.pk,
@@ -110,7 +110,7 @@ export const updatePerson = async (data: Person): Promise<Person> => {
  */
 export const getPersons = async (): Promise<MaybeUndefined<Person[]>> => {
   const { Items } = await ddb.query({
-    TableName: TABLE.name,
+    TableName: process.env.TABLE_NAME as string,
     IndexName: 'reverse',
     KeyConditionExpression: '#sk = :sk and begins_with(#pk, :pk)',
     ExpressionAttributeNames: {
@@ -143,7 +143,7 @@ export const getPersons = async (): Promise<MaybeUndefined<Person[]>> => {
  */
 export const getPerson = async (id: string): Promise<MaybeUndefined<Person>> => {
   const { Item: item } = await ddb.get({
-    TableName: TABLE.name,
+    TableName: process.env.TABLE_NAME as string,
     Key: {
       pk: `${TABLE.pkPrefix}${id}`,
       sk: `${TABLE.skPrefix}`

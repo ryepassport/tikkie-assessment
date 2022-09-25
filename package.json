@@ -9,8 +9,16 @@
     "postinstall": "npx husky install",
     "test": "jest --runInBand --coverage",
     "lint": "npx eslint --ext .ts .",
-    "diff": "npx cdk diff person-infra-app --debug",
-    "deploy": "npx cdk deploy person-infra-app  --require-approval never"
+    "diff": "npx cdk diff $STACK --debug",
+    "deploy": "npx cdk deploy $STACK --require-approval never",
+    "deploy:dev": "export STACK=person-dev && npm run deploy",
+    "deploy:test": "export STACK=person-test && npm run deploy",
+    "deploy:staging": "export STACK=person-staging && npm run deploy",
+    "deploy:prod": "export STACK=person-prod && npm run deploy",
+    "diff:dev": "export STACK=person-dev && npm run diff",
+    "diff:test": "export STACK=person-test && npm run diff",
+    "diff:staging": "export STACK=person-staging && npm run diff",
+    "diff:prod": "export STACK=person-prod && npm run diff"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",

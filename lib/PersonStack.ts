@@ -1,4 +1,3 @@
-import { QUEUE } from '@constants/aws';
 import { APIGateway } from '@constructs/apiGateway'
 import { DeletePersonLambda } from '@constructs/lambdas/deletePerson';
 import { GetPersonLambda } from '@constructs/lambdas/getPerson';
@@ -47,7 +46,7 @@ export class PersonStack extends Stack {
     })
 
     const personEventQueue = new PersonEventQueue(this, 'PersonEventQueue', {
-      queueName: QUEUE.name
+      queueName: props.queueName
     })
 
     new SavePersonLambda(this, 'SavePersonLambda', {

@@ -29,6 +29,8 @@ export class DeletePersonLambda extends NodejsFunction {
 
     props.table.grant(this, 'dynamodb:Query', 'dynamodb:BatchWrite*')
 
+    this.addEnvironment('TABLE_NAME', props.table.tableName)
+
     if (props.queue) {
       const { url, arn } = props.queue
 
