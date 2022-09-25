@@ -43,6 +43,16 @@ describe('helpers/handler', () => {
     })
   })
 
+  describe('created', () => {
+    it('should return status code 201', () => {
+      const spy = jest.spyOn(handler, 'buildHandlerResponse')
+
+      handler.created('')
+
+      expect(spy.mock.calls[0]?.[0]).toEqual(handler.STATUS_CODE.CREATED)
+    })
+  })
+
   describe('serverError', () => {
     it('should return status code 500', () => {
       const spy = jest.spyOn(handler, 'buildHandlerResponse')
