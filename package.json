@@ -1,6 +1,8 @@
 {
   "name": "tikke-assessment",
-  "version": "0.1.0",
+  "author": "Rye Pasaporte",
+  "description": "Simple person API infra written in AWS CDK",
+  "version": "0.2.0",
   "bin": {
     "tikke-assessment": "bin/stack.js"
   },
