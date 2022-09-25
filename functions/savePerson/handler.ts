@@ -1,4 +1,4 @@
-import { ok, serverError } from '@helpers/handler'
+import { created, serverError } from '@helpers/handler'
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import { validateRequest } from './requestModel'
 import { save } from './save'
@@ -21,7 +21,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
       id
     })
 
-    return ok(res)
+    return created(res)
   } catch (err) {
     return serverError(err as Error)
   }
