@@ -32,6 +32,8 @@ export class GetPersonLambda extends NodejsFunction {
 
     props.table.grant(this, 'dynamodb:Get*', 'dynamodb:Query')
 
+    this.addEnvironment('TABLE_NAME', props.table.tableName)
+
     props.apiGateway.addLambdaIntegration(this, apiGatewayIntegration)
   }
 }

@@ -39,6 +39,8 @@ export class SavePersonLambda extends NodejsFunction {
     const grantType = props.requestType === 'SAVE' ? 'dynamodb:PutItem' : 'dynamodb:Update*'
     props.table.grant(this, grantType)
 
+    this.addEnvironment('TABLE_NAME', props.table.tableName)
+
     if (props.queue) {
       const { url, arn } = props.queue
 
