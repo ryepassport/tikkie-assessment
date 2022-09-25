@@ -1,11 +1,11 @@
 import { APIGateway } from '@constructs/apiGateway'
-import { DeletePersonLambda } from '@constructs/lambdas/deletePerson';
-import { GetPersonLambda } from '@constructs/lambdas/getPerson';
-import { SavePersonLambda } from '@constructs/lambdas/savePerson';
-import { PersonEventQueue } from '@constructs/sqs';
+import { DeletePersonLambda } from '@constructs/lambdas/deletePerson'
+import { GetPersonLambda } from '@constructs/lambdas/getPerson'
+import { SavePersonLambda } from '@constructs/lambdas/savePerson'
+import { PersonEventQueue } from '@constructs/sqs'
 import { PersonTable } from '@constructs/table'
 import { Stack, StackProps } from 'aws-cdk-lib'
-import { Construct } from 'constructs';
+import { Construct } from 'constructs'
 
 /**
  * Unique props for Person Stack

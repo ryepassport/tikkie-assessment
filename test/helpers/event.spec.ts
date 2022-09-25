@@ -37,7 +37,7 @@ describe('helpers/event', () => {
 
     await eventHelper.addEvent(message, MessageEventType.CREATED)
 
-    expect(sendMessageMock).toHaveBeenCalled();
+    expect(sendMessageMock).toHaveBeenCalled()
 
   })
 })

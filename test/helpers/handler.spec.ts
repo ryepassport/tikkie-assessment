@@ -2,8 +2,8 @@ import * as handler from '@helpers/handler'
 
 describe('helpers/handler', () => {
   afterEach(() => {
-    jest.clearAllMocks();
-    jest.resetAllMocks();
+    jest.clearAllMocks()
+    jest.resetAllMocks()
   })
 
   describe('buildHandlerResponse', () => {

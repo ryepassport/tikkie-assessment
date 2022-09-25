@@ -1,9 +1,9 @@
-import { LambdaBaseProps, nodeJSFunctionProps } from '@constructs/lambda';
-import { deletePerson } from '@functions/deletePerson';
-import { QueueDetails } from '@models/queue';
-import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam';
+import { LambdaBaseProps, nodeJSFunctionProps } from '@constructs/lambda'
+import { deletePerson } from '@functions/deletePerson'
+import { QueueDetails } from '@models/queue'
+import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam'
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs'
-import { Construct } from 'constructs';
+import { Construct } from 'constructs'
 
 /**
  * Unique interface used for delete person lambda
