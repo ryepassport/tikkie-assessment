@@ -61,6 +61,16 @@ export const ok = (body: ResponseBody, headers?: Headers) => {
 }
 
 /**
+ * 
+ * @param body 
+ * @param headers 
+ * @returns 
+ */
+export const created = (body: ResponseBody, headers?: Headers) => {
+  return buildHandlerResponse(STATUS_CODE.CREATED, body, headers)
+}
+
+/**
  * Returns an error for not found record
  * @param body 
  * @param headers 
