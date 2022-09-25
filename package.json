@@ -1,10 +1,10 @@
 {
-  "name": "tikke-assessment",
+  "name": "tikkie-assessment",
   "author": "Rye Pasaporte",
   "description": "Simple person API infra written in AWS CDK",
   "version": "0.2.0",
   "bin": {
-    "tikke-assessment": "bin/stack.js"
+    "tikkie-assessment": "bin/stack.js"
   },
   "scripts": {
     "prepare": "npx husky install",
