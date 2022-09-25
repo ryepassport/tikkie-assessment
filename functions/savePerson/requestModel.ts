@@ -19,10 +19,13 @@ export const validateRequest = (data: MaybeNull<string>): Person => {
   const parsed = safeParse(data)
 
   const schema: Joi.Schema = Joi.object({
+    id: Joi.string(),
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
     address: Joi.string().required(),
-    phone: Joi.string().required()
+    phone: Joi.string().required(),
+    createdAt: Joi.string(),
+    updatedAt: Joi.string()
   })
 
   const result = new RequestValidationResult<Person>(schema.validate(parsed))
