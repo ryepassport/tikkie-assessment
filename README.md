@@ -24,6 +24,7 @@ _Technology stack_
     - X-ray
     - DynamoDB
     - SQS
+    - SNS
     - API Gateway
     - Lambda Function
     - and many relevant services used to make the API
