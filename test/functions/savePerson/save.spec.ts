@@ -8,7 +8,7 @@ jest.mock('@helpers/event')
 
 describe('functions/savePerson', () => {
   afterEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
     jest.resetAllMocks()
   })
 

@@ -4,6 +4,12 @@ import '@aws-cdk/assert/jest'
 import { PersonStack, PersonStackProps } from '@lib/PersonStack'
 
 describe('lib/PersonStack', () => {
+  afterEach(() => {
+    jest.clearAllMocks()
+    jest.resetAllMocks()
+  })
+
+
   const buildProps = (): PersonStackProps => {
     return {
       queueName: 'test-queue',

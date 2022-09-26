@@ -12,7 +12,7 @@ interface BananaMessage {
 
 describe('helpers/event', () => {
   afterEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
     jest.resetAllMocks()
   })
 

@@ -6,7 +6,7 @@ jest.mock('@helpers/storage/person')
 
 describe('functions/getPerson', () => {
   afterEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
     jest.resetAllMocks()
   })
 
