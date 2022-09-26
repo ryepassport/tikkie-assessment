@@ -79,7 +79,7 @@ curl --location --request GET 'https://{apiGatewayId}.execute-api.ap-southeast-1
 ### UPDATE
 Update a specific record
 ```sh
-curl --location --request PATCH 'https://{apiGatewayId}.execute-api.ap-southeast-1.amazonaws.com/dev/person/{id}' \
+curl --location --request PUT 'https://{apiGatewayId}.execute-api.ap-southeast-1.amazonaws.com/dev/person/{id}' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "firstName": "Jon",
