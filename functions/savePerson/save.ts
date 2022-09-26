@@ -1,4 +1,5 @@
 import { addEvent } from '@helpers/event'
+import { publishMessage } from '@helpers/publishMessage'
 import { savePerson, updatePerson } from '@helpers/storage/person'
 import { Person } from '@models/person'
 import { MessageEventType } from '@models/queue'
@@ -36,6 +37,9 @@ export const save = async (requestData: PersonRequestParams): Promise<Person> =>
 
   // Send event to queue for processing
   await addEvent<Person>(res, id ? MessageEventType.UPDATED : MessageEventType.CREATED)
+
+  // Add message to SNS topic
+  await publishMessage<Person>(res, id ? MessageEventType.UPDATED : MessageEventType.CREATED)
 
   return res
 }
