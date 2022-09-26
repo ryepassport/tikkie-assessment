@@ -1,7 +1,9 @@
 import { APIGateway } from '@constructs/apiGateway'
 import { DeletePersonLambda } from '@constructs/lambdas/deletePerson'
+import { EventProcessorLambda } from '@constructs/lambdas/evenProcessor'
 import { GetPersonLambda } from '@constructs/lambdas/getPerson'
 import { SavePersonLambda } from '@constructs/lambdas/savePerson'
+import { PersonSns } from '@constructs/sns'
 import { PersonEventQueue } from '@constructs/sqs'
 import { PersonTable } from '@constructs/table'
 import { Stack, StackProps } from 'aws-cdk-lib'
@@ -23,6 +25,10 @@ export interface UniquePersonStackProps {
    * Name of queue for each lambda events occurred
    */
   queueName: string
+  /**
+   * Name for sns event
+   */
+  snsName: string
 }
 
 /**
@@ -49,10 +55,19 @@ export class PersonStack extends Stack {
       queueName: props.queueName
     })
 
+    const topic = new PersonSns(this, 'PersonTopic', {
+      snsName: props.snsName
+    })
+
+    new EventProcessorLambda(this, 'PersonEventProcessorLambda', {
+      topic
+    })
+
     new SavePersonLambda(this, 'SavePersonLambda', {
       table,
       apiGateway,
       requestType: 'SAVE',
+      sns: topic,
       queue: {
         url: personEventQueue.queueUrl,
         arn: personEventQueue.queueArn
@@ -63,6 +78,7 @@ export class PersonStack extends Stack {
       table,
       apiGateway,
       requestType: 'UPDATE',
+      sns: topic,
       queue: {
         url: personEventQueue.queueUrl,
         arn: personEventQueue.queueArn
@@ -72,6 +88,7 @@ export class PersonStack extends Stack {
     new DeletePersonLambda(this, 'DeletePersonLambda', {
       table,
       apiGateway,
+      sns: topic,
       queue: {
         url: personEventQueue.queueUrl,
         arn: personEventQueue.queueArn
@@ -79,5 +96,6 @@ export class PersonStack extends Stack {
     })
     new GetPersonLambda(this, 'GetPersonLambda', { table, apiGateway, requestType: 'GET' })
     new GetPersonLambda(this, 'ListPersonLambda', { table, apiGateway, requestType: 'LIST' })
+
   }
 }

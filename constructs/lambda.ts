@@ -3,6 +3,7 @@ import { Architecture, LambdaInsightsVersion, Runtime, Tracing } from 'aws-cdk-l
 import { NodejsFunctionProps } from 'aws-cdk-lib/aws-lambda-nodejs'
 import { RetentionDays } from 'aws-cdk-lib/aws-logs'
 import { APIGateway } from './apiGateway'
+import { PersonSns } from './sns'
 import { PersonTable } from './table'
 
 /**
@@ -17,6 +18,10 @@ export interface LambdaBaseProps {
    * Storage for lambda
    */
   table: PersonTable
+  /**
+   * SNS topic
+   */
+  sns?: PersonSns
 }
 
 /**

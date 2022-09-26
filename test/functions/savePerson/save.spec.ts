@@ -1,6 +1,7 @@
 import * as savePerson from '@functions/savePerson/save'
 import * as personStorageHelper from '@helpers/storage/person'
 import * as eventHelper from '@helpers/event'
+import * as publishMessageHelper from '@helpers/publishMessage'
 import { Person } from '@models/person'
 
 jest.mock('@helpers/storage/person')
@@ -24,6 +25,7 @@ describe('functions/savePerson', () => {
     it('should save a new record', async () => {
       const savePersonMock = jest.spyOn(personStorageHelper, 'savePerson').mockResolvedValue(person)
       const addEventMock = jest.spyOn(eventHelper, 'addEvent').mockResolvedValue()
+      const publishMessageMock = jest.spyOn(publishMessageHelper, 'publishMessage').mockResolvedValue()
       
       const output = await savePerson.save({
         data: {} as unknown as Person
@@ -32,11 +34,13 @@ describe('functions/savePerson', () => {
       expect(output).toEqual(person)
       expect(savePersonMock).toBeCalled()
       expect(addEventMock).toBeCalled()
+      expect(publishMessageMock).toBeCalled()
     })
 
     it('should update a record', async () => {
       const updatePersonMock = jest.spyOn(personStorageHelper, 'updatePerson').mockResolvedValue(person)
       const addEventMock = jest.spyOn(eventHelper, 'addEvent').mockResolvedValue()
+      const publishMessageMock = jest.spyOn(publishMessageHelper, 'publishMessage').mockResolvedValue()
 
       const output = await savePerson.save({
         data: {} as unknown as Person,
@@ -46,6 +50,7 @@ describe('functions/savePerson', () => {
       expect(output).toEqual(person)
       expect(updatePersonMock).toBeCalled()
       expect(addEventMock).toBeCalled()
+      expect(publishMessageMock).toBeCalled()
 
     })
 

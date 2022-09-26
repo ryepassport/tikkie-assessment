@@ -1,10 +1,10 @@
-import * as eventHelper from '@helpers/event'
-import * as sqsHelper from '@helpers/aws/sqs'
+import * as publishMessageHelper from '@helpers/publishMessage'
+import * as snsHelper from '@helpers/aws/sns'
 import { MessageDetails, MessageEventType } from '@models/queue'
 import { getISODate } from '@helpers/date'
 
 
-jest.mock('@helpers/aws/sqs')
+jest.mock('@helpers/aws/sns')
 
 interface BananaMessage {
   message: string
@@ -17,7 +17,7 @@ describe('helpers/event', () => {
   })
 
   it('should post a new message in the sqs queue', async () => {
-    const sendMessageMock = jest.spyOn(sqsHelper, 'sendMessage').mockImplementationOnce(
+    const publishMessageMock = jest.spyOn(snsHelper, 'publish').mockImplementationOnce(
       jest.fn()
     )
     
@@ -29,9 +29,9 @@ describe('helpers/event', () => {
       created: getISODate()
     }
 
-    await eventHelper.addEvent(message, MessageEventType.CREATED)
+    await publishMessageHelper.publishMessage(message, MessageEventType.CREATED)
 
-    expect(sendMessageMock).toHaveBeenCalled()
+    expect(publishMessageMock).toHaveBeenCalled()
 
   })
 })
