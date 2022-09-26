@@ -47,21 +47,25 @@ export const PERSON_STACK_PROPS: Stages<UniquePersonStackProps> = {
   dev: {
     apiStageName: 'dev',
     tableName: 'person-dev',
-    queueName: 'persons-queue-dev'
+    queueName: 'persons-queue-dev',
+    snsName: 'person-topic-dev'
   },
   test: {
     apiStageName: 'test',
     tableName: 'persons-test',
-    queueName: 'persons-queue-test'
+    queueName: 'persons-queue-test',
+    snsName: 'person-topic-test'
   },
   staging: {
     apiStageName: 'staging',
     tableName: 'persons-staging',
-    queueName: 'persons-queue-staging'
+    queueName: 'persons-queue-staging',
+    snsName: 'person-topic-staging'
   },
   prod: {
     apiStageName: 'prod',
     tableName: 'persons-prod',
-    queueName: 'persons-queue-prod'
+    queueName: 'persons-queue-prod',
+    snsName: 'person-topic-prod'
   }
 }
