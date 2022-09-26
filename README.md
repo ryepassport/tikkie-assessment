@@ -1,7 +1,7 @@
 # Persons API - _Notes and instructions_
 ### _A really fun assessment._
 I just want to express my gradtitude for giving me this oppurtunity and it was a really fun challenge to do so far for that I thank you.
-___
+
 ## Features
  
 - Created AWS Infrasture with AWS CDK using TypeScript
@@ -10,7 +10,6 @@ ___
 - Installed [Husky](https://typicode.github.io/husky/#/) for git hooks and best practices
 - Can be deployed in multiple stages
 
-___
 ## CDK Challenge (the fun part!)
 This has been the really fun part thus part. This actually made me think to create the infrastructure as simple, as granular and as readable as possible.
 _Technology stack_
