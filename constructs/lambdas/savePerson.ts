@@ -55,6 +55,16 @@ export class SavePersonLambda extends NodejsFunction {
       this.addToRolePolicy(policyStatement)
     }
 
+    if (props.sns) {
+      const snsTopicPolicy = new PolicyStatement({
+        effect: Effect.ALLOW,
+        actions: ['sns:Publish'],
+        resources: [props.sns.topicArn]
+      })
+
+      this.addToRolePolicy(snsTopicPolicy)
+    }
+
     props.apiGateway.addLambdaIntegration(this, apiGatewayIntegration)
   }
 }
