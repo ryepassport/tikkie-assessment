@@ -14,7 +14,8 @@ describe('lib/PersonStack', () => {
     return {
       queueName: 'test-queue',
       tableName: 'test-table',
-      apiStageName: 'dev'
+      apiStageName: 'dev',
+      snsName: 'test-sns'
     }
   }
 
@@ -35,6 +36,12 @@ describe('lib/PersonStack', () => {
   it('should define an SQS queue', () => {
     expect(stack).toHaveResource('AWS::SQS::Queue', {
       QueueName: 'test-queue'
+    })
+  })
+
+  it('should define an SNS topic', () => {
+    expect(stack).toHaveResource('AWS::SNS::Topic', {
+      TopicName: 'test-sns'
     })
   })
 
