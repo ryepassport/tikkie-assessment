@@ -1,4 +1,4 @@
-# Persons API - _Notes and instructions_
+# Persons API
 ### _A really fun assessment._
 I just want to express my gradtitude for giving me this oppurtunity and it was a really fun challenge to do so far for that I thank you.
 
