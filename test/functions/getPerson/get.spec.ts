@@ -46,7 +46,7 @@ describe('functions/getPerson', () => {
       expect(output).toBeUndefined()
     })
 
-    it('should return an undefined value when no record was found', async() => {
+    it('should return an empty array value when no record was found', async() => {
       jest.spyOn(personStorageHelper, 'getPersons').mockResolvedValue([])
 
       const output = await getPerson.get()
